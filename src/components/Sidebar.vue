@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import {useCocktail} from "../modules/store/cocktailStore";
+import {useCocktail} from "../modules/cocktail/store/cocktailStore";
 import {storeToRefs} from "pinia";
 
 const cocktailStore = useCocktail()

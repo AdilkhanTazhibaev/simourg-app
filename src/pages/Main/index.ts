@@ -1,7 +1,7 @@
 import {type RouteRecordRaw} from 'vue-router'
 import MainPage from './MainPage.vue'
 import Cocktail from "./Cocktail";
-import {useCocktail} from "../../modules/store/cocktailStore";
+import {useCocktail} from "../../modules/cocktail/store/cocktailStore";
 
 
 const Main: RouteRecordRaw = {

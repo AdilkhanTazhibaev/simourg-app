@@ -24,7 +24,7 @@
 import {onMounted, ref} from "vue";
 import {cocktailApi, Drink} from "../../../api/cocktailApi";
 import {onBeforeRouteUpdate, RouteLocation, useRoute} from "vue-router";
-import {useCocktail} from "../../store/cocktailStore";
+import {useCocktail} from "../store/cocktailStore";
 import {storeToRefs} from "pinia";
 
 const cocktailStore = useCocktail()

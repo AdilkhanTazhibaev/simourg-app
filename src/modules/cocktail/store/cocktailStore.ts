@@ -1,6 +1,6 @@
 import {defineStore} from "pinia";
 import {ref} from "vue";
-import {Drink} from "../../api/cocktailApi";
+import {Drink} from "../../../api/cocktailApi";
 
 interface Cocktail {
     [key: string]: Drink[]
