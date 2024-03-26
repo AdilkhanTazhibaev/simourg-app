@@ -22,9 +22,9 @@
 
 <script lang="ts" setup>
 import {onMounted, ref} from "vue";
-import {cocktailApi, Drink} from "../../../api/cocktailApi";
+import {cocktailApi, Drink} from "../../api/cocktailApi";
 import {onBeforeRouteUpdate, RouteLocation, useRoute} from "vue-router";
-import {useCocktail} from "../store/cocktailStore";
+import {useCocktail} from "./store/cocktailStore";
 import {storeToRefs} from "pinia";
 
 const cocktailStore = useCocktail()
@@ -38,7 +38,7 @@ interface Ingredient {
   name: string;
 }
 
-function addElementToArray(array: Drink[], elementKey: string = 'strIngredient'): Drink[] {
+const addElementToArray = (array: Drink[], elementKey: string = 'strIngredient'): Drink[] => {
   for (let i: number = 0; i < array.length; i++) {
     array[i].ingredients = [];
     for (let j = 1; j <= 15; j++) {

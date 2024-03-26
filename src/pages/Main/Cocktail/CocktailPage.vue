@@ -1,9 +1,9 @@
 <template>
-  <CocktailView/>
+  <CocktailModule/>
 </template>
 
 <script lang="ts" setup>
-import CocktailView from "../../../modules/cocktail/views/CocktailView.vue";</script>
+import CocktailModule from "../../../modules/cocktail/CocktailModule.vue";</script>
 
 <style scoped>
 
