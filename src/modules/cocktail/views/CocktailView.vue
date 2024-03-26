@@ -23,24 +23,29 @@
 <script lang="ts" setup>
 import {onMounted, ref} from "vue";
 import {cocktailApi, Drink} from "../../../api/cocktailApi";
-import {onBeforeRouteUpdate} from "vue-router";
+import {onBeforeRouteUpdate, RouteLocation, useRoute} from "vue-router";
 import {useCocktail} from "../../store/cocktailStore";
 import {storeToRefs} from "pinia";
 
 const cocktailStore = useCocktail()
-const {cocktails, items} = storeToRefs(cocktailStore)
+const {params} = useRoute()
+const {cocktails} = storeToRefs(cocktailStore)
 
-const cocktailCode = ref<string>(items.value[0])
-const ingredientsList = ref<{ ingredient: string, measure: string, drink: string }[]>([])
+const cocktailCode = ref<string>(<string>params?.code)
 const drinks = ref<Drink[]>([])
 
-function addElementToArray(array, elementKey = 'strIngredient') {
-  for (let i = 0; i < array.length; i++) {
+interface Ingredient {
+  name: string;
+}
+
+function addElementToArray(array: Drink[], elementKey: string = 'strIngredient'): Drink[] {
+  for (let i: number = 0; i < array.length; i++) {
     array[i].ingredients = [];
     for (let j = 1; j <= 15; j++) {
-      if (array[i][elementKey + j]) {
-        let ingredient = {
-          name: array[i][elementKey + j],
+      const ingredientName = `${elementKey}${j}` as keyof Drink
+      if (array[i][ingredientName]) {
+        let ingredient = <Ingredient>{
+          name: array[i][ingredientName],
         };
         array[i].ingredients.push(ingredient);
       }
@@ -62,13 +67,13 @@ const fetchData = async () => {
       console.log(e)
     }
   }
-  ingredientsList.value = addElementToArray(drinks.value)
+  addElementToArray(drinks.value)
 }
 
 
-onBeforeRouteUpdate(async (to: object, from) => {
+onBeforeRouteUpdate(async (to: RouteLocation, from) => {
   if (to.params.code !== from.params.code) {
-    cocktailCode.value = to.params.code ?? ''
+    cocktailCode.value = <string>to.params?.code
     await fetchData()
   }
 })

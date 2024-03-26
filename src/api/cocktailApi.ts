@@ -57,12 +57,11 @@ export interface Drink {
     strImageAttribution?: string
     strCreativeCommonsConfirmed: string
     dateModified?: string
-    ingredients?: []
+    ingredients: any[]
 }
 
-
 export const cocktailApi = {
-    getCocktailByCode(code: string = 'kir'): Promise<AxiosResponse<Cocktail>> {
+    getCocktailByCode(code: string = 'kir'): Promise<AxiosResponse> {
         return httpClient.get<{ data: Cocktail }>('/', {
             params: {
                 s: code

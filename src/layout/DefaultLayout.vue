@@ -6,7 +6,6 @@ import Sidebar from "../components/Sidebar.vue";</script>
     <div class="app__sidebar">
       <Sidebar/>
     </div>
-    <div class="app__divider"></div>
     <div class="app__main">
       <router-view/>
     </div>
@@ -18,6 +17,10 @@ import Sidebar from "../components/Sidebar.vue";</script>
   display: flex;
   gap: 5px;
   height: 100%;
+
+  &__sidebar {
+    border-right: 2px solid;
+  }
 
   &__main {
     width: 100%;
